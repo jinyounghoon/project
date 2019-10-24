@@ -36,7 +36,7 @@ def handle_events():
 def draw():
     clear_canvas()
     image2.draw(WIDTH//2, HEIGHT//2, 800, 600)
-    image.draw(400, 500, 200, 100)
+    image.draw(400, 500, 270, 150)
     update_canvas()
 
 

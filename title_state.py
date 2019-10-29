@@ -3,7 +3,7 @@ from pico2d import *
 
 import main_state
 
-WIDTH, HEIGHT = 800, 600
+WIDTH, HEIGHT = 1200, 800
 
 name = "TitleState"
 image = None
@@ -29,14 +29,14 @@ def handle_events():
         else:
             if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
                 game_framework.quit()
-            elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
+            elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_z):
                 game_framework.change_state(main_state)
 
 
 def draw():
     clear_canvas()
-    image2.draw(WIDTH//2, HEIGHT//2, 800, 600)
-    image.draw(400, 500, 270, 150)
+    image2.draw(WIDTH//2, HEIGHT//2, 1200, 800)
+    image.draw(600, 670, 300, 150)
     update_canvas()
 
 

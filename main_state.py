@@ -2,11 +2,14 @@ import random
 import json
 import os
 
+
 from pico2d import *
 
+import game_world
 import game_framework
 import title_state
 import pause_state
+
 
 name = "MainState"
 
@@ -17,44 +20,17 @@ font = None
 x, y = 0, 90
 
 
-class Grass:
-    def __init__(self):
-        self.image = load_image('grass.png')
-
-    def draw(self):
-        self.image.draw(400, 30)
-
-
-class Boy:
-    def __init__(self):
-        self.x = 0
-        self.y = 90
-        self.frame = 0
-        self.image = load_image('run_animation.png')
-        self.dir = 1
-
-    def update(self):
-        self.frame = (self.frame + 1) % 8
-        self.x += self.dir
-        if self.x >= 800:
-            self.dir = -1
-        elif self.x <= 0:
-            self.dir = 1
-
-    def draw(self):
-        self.image.clip_draw(self.frame * 100, 0, 100, 100, self.x, self.y)
-
 
 def enter():
     global boy, grass
     boy = Boy()
     grass = Grass()
+    game_world.add_object(grass, 0)
+    game_world.add_object(boy, 1)
 
 
 def exit():
-    global boy, grass
-    del(boy)
-    del(grass)
+    game_world.clear()
 
 
 def pause():
@@ -79,13 +55,14 @@ def handle_events():
 
 
 def update():
-    boy.update()
+    for game_object in game_world.all_objects():
+        game_object.update()
 
 
 def draw():
     clear_canvas()
-    grass.draw()
-    boy.draw()
+    for game_object in game_world.all_objects():
+        game_object.draw()
     update_canvas()
 
 

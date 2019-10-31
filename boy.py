@@ -94,6 +94,7 @@ class RunState:
         boy.x += boy.velocity
         boy.x = clamp(25, boy.x, 1600 - 25)
         boy.y += boy.velocity2
+        boy.y = clamp(25, boy.y, 600 - 25)
 
     @staticmethod
     def draw(boy):

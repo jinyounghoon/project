@@ -32,6 +32,14 @@ class IdleState:
             boy.velocity -= 1
         elif event == LEFT_UP:
             boy.velocity += 1
+        elif event == UP_DOWN:
+            boy.velocity2 += 1
+        elif event == DOWN_DOWN:
+            boy.velocity2 -= 1
+        elif event == UP_UP:
+            boy.velocity2 -= 1
+        elif event == DOWN_UP:
+            boy.velocity2 += 1
         boy.timer = 300
 
     @staticmethod
@@ -47,9 +55,9 @@ class IdleState:
     @staticmethod
     def draw(boy):
         if boy.dir == 1:
-            boy.image.clip_draw(0, 50, 100, 500, boy.x, boy.y)
+            boy.image.clip_draw(0, 0, 50, 50, boy.x, boy.y)
         else:
-            boy.image.clip_draw(0, 50, 100, 500, boy.x, boy.y)
+            boy.image.clip_draw(0, 0, 50, 50, boy.x, boy.y)
 
 
 class RunState:
@@ -64,6 +72,14 @@ class RunState:
             boy.velocity -= 1
         elif event == LEFT_UP:
             boy.velocity += 1
+        elif event == UP_DOWN:
+            boy.velocity2 += 1
+        elif event == DOWN_DOWN:
+            boy.velocity2 -= 1
+        elif event == UP_UP:
+            boy.velocity2 -= 1
+        elif event == DOWN_UP:
+            boy.velocity2 += 1
         boy.dir = boy.velocity
 
     @staticmethod
@@ -77,13 +93,14 @@ class RunState:
         boy.timer -= 1
         boy.x += boy.velocity
         boy.x = clamp(25, boy.x, 1600 - 25)
+        boy.y += boy.velocity2
 
     @staticmethod
     def draw(boy):
         if boy.velocity == 1:
-            boy.image.clip_draw(0, 0, 100, 500, boy.x, boy.y)
+            boy.image.clip_draw(0, 0, 50, 50, boy.x, boy.y)
         else:
-            boy.image.clip_draw(0, 0, 100, 500, boy.x, boy.y)
+            boy.image.clip_draw(0, 0, 50, 50, boy.x, boy.y)
 
 
 class SleepState:
@@ -95,17 +112,18 @@ class SleepState:
 
 
 next_state_table = {
-    IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState},
-    RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState, LEFT_DOWN: IdleState, RIGHT_DOWN: IdleState}
+    IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState, UP_DOWN: RunState, UP_UP: RunState, DOWN_DOWN: RunState, DOWN_UP: RunState},
+    RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState, LEFT_DOWN: IdleState, RIGHT_DOWN: IdleState,UP_DOWN: IdleState, UP_UP: IdleState, DOWN_DOWN: IdleState, DOWN_UP: IdleState}
 }
 
 class Boy:
 
     def __init__(self):
-        self.x, self.y = 1600 // 2, 90
+        self.x, self.y = 80, 300
         self.image = load_image('main_character1.png')
         self.dir = 1
         self.velocity = 0
+        self.velocity2 = 0
         self.frame = 0
         self.timer = 0
         self.event_que = []

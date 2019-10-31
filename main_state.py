@@ -8,10 +8,8 @@ from pico2d import *
 import game_world
 import game_framework
 import title_state
-import pause_state
 from boy import Boy
 from grass import Grass
-
 
 
 name = "MainState"
@@ -20,8 +18,8 @@ boy = None
 grass = None
 font = None
 
-x, y = 0, 90
 
+x, y = 0, 90
 
 
 def enter():
@@ -54,7 +52,6 @@ def handle_events():
             game_framework.change_state(title_state)
         elif event.type == SDL_KEYDOWN and event.key == SDLK_p:
             x, y = event.x, event.y
-            game_framework.push_state(pause_state)
 
 
 def update():

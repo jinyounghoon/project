@@ -37,6 +37,7 @@ def draw():
     clear_canvas()
     image2.draw(WIDTH//2, HEIGHT//2, 1200, 800)
     image.draw(600, 670, 300, 150)
+
     update_canvas()
 
 

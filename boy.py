@@ -4,13 +4,17 @@ from pico2d import *
 import game_world
 
 # Boy Event
-RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP = range(4)
+RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, UP_DOWN, UP_UP, DOWN_DOWN, DOWN_UP = range(8)
 
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RIGHT_DOWN,
     (SDL_KEYDOWN, SDLK_LEFT): LEFT_DOWN,
     (SDL_KEYUP, SDLK_RIGHT): RIGHT_UP,
-    (SDL_KEYUP, SDLK_LEFT): LEFT_UP
+    (SDL_KEYUP, SDLK_LEFT): LEFT_UP,
+    (SDL_KEYDOWN, SDLK_UP): UP_DOWN,
+    (SDL_KEYDOWN, SDLK_DOWN): DOWN_DOWN,
+    (SDL_KEYUP, SDLK_UP): UP_UP,
+    (SDL_KEYUP, SDLK_DOWN): DOWN_UP
 }
 
 
@@ -43,9 +47,9 @@ class IdleState:
     @staticmethod
     def draw(boy):
         if boy.dir == 1:
-            boy.image.clip_draw(boy.frame * 100, 300, 100, 100, boy.x, boy.y)
+            boy.image.clip_draw(0, 50, 100, 500, boy.x, boy.y)
         else:
-            boy.image.clip_draw(boy.frame * 100, 200, 100, 100, boy.x, boy.y)
+            boy.image.clip_draw(0, 50, 100, 500, boy.x, boy.y)
 
 
 class RunState:
@@ -77,9 +81,9 @@ class RunState:
     @staticmethod
     def draw(boy):
         if boy.velocity == 1:
-            boy.image.draw(0, 100, 100, 100, boy.x, boy.y)
+            boy.image.clip_draw(0, 0, 100, 500, boy.x, boy.y)
         else:
-            boy.image.clip_draw(0, 0, 100, 100, boy.x, boy.y)
+            boy.image.clip_draw(0, 0, 100, 500, boy.x, boy.y)
 
 
 class SleepState:

@@ -9,6 +9,9 @@ import game_world
 import game_framework
 import title_state
 import pause_state
+from boy import Boy
+from grass import Grass
+
 
 
 name = "MainState"

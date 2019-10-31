@@ -77,9 +77,9 @@ class RunState:
     @staticmethod
     def draw(boy):
         if boy.velocity == 1:
-            boy.image.clip_draw(boy.frame * 100, 100, 100, 100, boy.x, boy.y)
+            boy.image.draw(0, 100, 100, 100, boy.x, boy.y)
         else:
-            boy.image.clip_draw(boy.frame * 100, 0, 100, 100, boy.x, boy.y)
+            boy.image.clip_draw(0, 0, 100, 100, boy.x, boy.y)
 
 
 class SleepState:

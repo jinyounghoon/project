@@ -8,5 +8,5 @@ class Grass:
         pass
 
     def draw(self):
-        self.image.draw(600, 400)
+        self.image.draw(500, 400)
         self.image.draw(1200, 400)

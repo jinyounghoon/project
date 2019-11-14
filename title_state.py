@@ -12,8 +12,8 @@ image2 = None
 
 def enter():
     global image, image2
-    image = load_image('title.png')
-    image2 = load_image('title2.png')
+    image = load_image('image/title.png')
+    image2 = load_image('image/title2.png')
 
 def exit():
     global image, image2

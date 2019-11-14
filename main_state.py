@@ -8,7 +8,7 @@ from pico2d import *
 import game_world
 import game_framework
 import title_state
-from boy import Boy
+from main_character import Boy
 from grass import Grass
 
 
